@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:notes/logic/add_controller.dart';
 import 'package:notes/widgets/image_input.dart';
 
 class AddNoteScreen extends StatefulWidget {
@@ -16,7 +18,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
 
   File? _selectedImage;
 
-  _savePlace() {
+  _saveNote() {
     final enteredTitle = _titleController.text;
     final enteredDescription = _descriptionController.text;
     //File? image;
@@ -30,6 +32,9 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
         duration: Duration(seconds: 3),
       ));
     }
+
+    Get.find<AddNoteController>()
+        .addNote(enteredTitle, _selectedImage!, enteredDescription);
 
     // ref.read(userPlacesProvider.notifier).addPlace(
     //       enteredTitle,
@@ -98,7 +103,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
             ),
             const SizedBox(height: 32),
             ElevatedButton.icon(
-              onPressed: _savePlace,
+              onPressed: _saveNote,
               icon: const Icon(Icons.add),
               label: const Text('Добавить заметку'),
             ),
