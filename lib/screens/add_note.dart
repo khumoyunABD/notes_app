@@ -28,7 +28,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
         enteredDescription.isEmpty) {
       ScaffoldMessenger.of(context).clearSnackBars();
       return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Please fill all required fields!'),
+        content: Text('Заполните все поля!'),
         duration: Duration(seconds: 3),
       ));
     }
@@ -55,61 +55,98 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Добавить новую заметку'),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          children: [
-            TextField(
-              decoration: const InputDecoration(labelText: 'Заголовок'),
-              controller: _titleController,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onBackground,
-              ),
+        appBar: AppBar(
+          title: const Text('Добавить новую заметку'),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.bookmark_add),
             ),
-            const SizedBox(height: 16),
-            ImageInput(
-              onSelectImage: (image) {
-                _selectedImage = image;
-              },
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              //decoration: const InputDecoration(labelText: 'Description'),
-              controller: _descriptionController,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onBackground,
-              ),
-              maxLines: null,
-              decoration: InputDecoration(
-                alignLabelWithHint: true,
-                errorMaxLines: 6,
-                floatingLabelAlignment: FloatingLabelAlignment.start,
-                helperMaxLines: 8,
-                hintText: 'Пишите здесь',
-                hintStyle: const TextStyle(color: Colors.grey),
-                hintMaxLines: 6,
-                contentPadding: const EdgeInsets.all(20),
-                border: const OutlineInputBorder(),
-                label: const Text(
-                  'Текст',
-                ),
-                labelStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.onBackground),
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-              ),
-            ),
-            const SizedBox(height: 32),
-            ElevatedButton.icon(
-              onPressed: _saveNote,
-              icon: const Icon(Icons.add),
-              label: const Text('Добавить заметку'),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.more_vert),
             ),
           ],
         ),
-      ),
-    );
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            children: [
+              TextField(
+                decoration: const InputDecoration(labelText: 'Заголовок'),
+                controller: _titleController,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
+              ),
+              const SizedBox(height: 16),
+              ImageInput(
+                onSelectImage: (image) {
+                  _selectedImage = image;
+                },
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                //decoration: const InputDecoration(labelText: 'Description'),
+                controller: _descriptionController,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
+                maxLines: null,
+                decoration: InputDecoration(
+                  alignLabelWithHint: true,
+                  errorMaxLines: 6,
+                  floatingLabelAlignment: FloatingLabelAlignment.start,
+                  helperMaxLines: 8,
+                  hintText: 'Пишите здесь',
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  hintMaxLines: 6,
+                  contentPadding: const EdgeInsets.all(20),
+                  border: const OutlineInputBorder(),
+                  label: const Text(
+                    'Текст',
+                  ),
+                  labelStyle: TextStyle(
+                      color: Theme.of(context).colorScheme.onBackground),
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                ),
+              ),
+              const SizedBox(height: 32),
+              ElevatedButton.icon(
+                onPressed: _saveNote,
+                icon: const Icon(Icons.add),
+                label: const Text('Добавить заметку'),
+              ),
+            ],
+          ),
+        ),
+        bottomSheet: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+          color: Theme.of(context).colorScheme.background,
+          child: SizedBox(
+            width: double.infinity,
+            height: 30,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  color: Colors.grey,
+                  onPressed: () {},
+                  icon: const Icon(Icons.camera_alt),
+                ),
+                IconButton(
+                  color: Colors.grey,
+                  onPressed: () {},
+                  icon: const Icon(Icons.image),
+                ),
+                IconButton(
+                  color: Colors.grey,
+                  onPressed: () {},
+                  icon: const Icon(Icons.check_box),
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 }

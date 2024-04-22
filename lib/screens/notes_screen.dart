@@ -12,12 +12,12 @@ class NotesScreen extends StatefulWidget {
 }
 
 class _NotesScreenState extends State<NotesScreen> {
-  late Future<void> _notesFuture;
+  //late Future<void> _notesFuture;
 
   @override
   void initState() {
     super.initState();
-    _notesFuture = Get.find<AddNoteController>().loadNotes();
+    Get.find<AddNoteController>().loadNotes();
   }
 
   @override

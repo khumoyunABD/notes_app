@@ -21,7 +21,7 @@ class NotesList extends StatelessWidget {
     if (notes.isEmpty) {
       return Center(
         child: Text(
-          'No notes added yet',
+          'Нет заметок!',
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 color: Theme.of(context).colorScheme.onBackground,
               ),
