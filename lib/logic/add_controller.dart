@@ -21,7 +21,7 @@ Future<Database> _getDatabase() async {
 }
 
 class AddNoteController extends GetxController {
-  List<Note> notes = <Note>[].obs;
+  List<Note> notes = <Note>[];
 
   Future<void> loadNotes() async {
     final db = await _getDatabase();
@@ -61,5 +61,6 @@ class AddNoteController extends GetxController {
       'image': newNote.image.path,
       'description': newNote.description,
     });
+    update();
   }
 }

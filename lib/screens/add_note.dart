@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes/logic/add_controller.dart';
+import 'package:notes/screens/notes_screen.dart';
 import 'package:notes/widgets/image_input.dart';
 
 class AddNoteScreen extends StatefulWidget {
@@ -35,6 +36,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
 
     Get.find<AddNoteController>()
         .addNote(enteredTitle, _selectedImage!, enteredDescription);
+    Get.find<AddNoteController>().loadNotes();
 
     // ref.read(userPlacesProvider.notifier).addPlace(
     //       enteredTitle,

@@ -17,14 +17,22 @@ class _NotesScreenState extends State<NotesScreen> {
   @override
   void initState() {
     super.initState();
+    Get.put(AddNoteController());
     Get.find<AddNoteController>().loadNotes();
   }
 
   @override
   Widget build(BuildContext context) {
-    final userNotes = Get.find<AddNoteController>().notes;
+    //Get.find<AddNoteController>().loadNotes();
+    final userNotes = Get.find<AddNoteController>();
+    //Obx(() => userNotes.notes)
+
     final userNotes1 = GetBuilder<AddNoteController>(
-        builder: (controller) => NotesList(notes: userNotes));
+        builder: (controller) => NotesList(notes: userNotes.notes));
+    //GetBuilder<AddNoteController>(
+    //builder: (controller) => NotesList(notes: userNotes));
+
+    //Obx(() => AddNoteController().notes,)
 
     return Scaffold(
       appBar: AppBar(

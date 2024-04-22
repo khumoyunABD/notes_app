@@ -27,7 +27,7 @@ final theme = ThemeData().copyWith(
 );
 
 void main() {
-  Get.put(AddNoteController());
+  //Get.put(AddNoteController());
   runApp(const MyApp());
 }
 
