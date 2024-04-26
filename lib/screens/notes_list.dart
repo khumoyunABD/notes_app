@@ -18,16 +18,16 @@ class NotesList extends StatelessWidget {
           MaterialPageRoute(builder: (ctx) => NoteDetailsScreen(note: note)));
     }
 
-    // if (notes.isEmpty) {
-    //   return Center(
-    //     child: Text(
-    //       'Нет заметок!',
-    //       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-    //             color: Theme.of(context).colorScheme.onBackground,
-    //           ),
-    //     ),
-    //   );
-    // }
+    if (notes.isEmpty) {
+      return Center(
+        child: Text(
+          'Нет заметок!',
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                color: Theme.of(context).colorScheme.onBackground,
+              ),
+        ),
+      );
+    }
 
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

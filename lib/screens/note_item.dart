@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:notes/models/note.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -21,10 +19,13 @@ class NoteItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Column(
-          //alignment: Alignment.bottomCenter,
-          children: [
-            if (myNote.image != null)
+        child: InkWell(
+          onTap: () {
+            onSelectNote(myNote);
+          },
+          child: Column(
+            //alignment: Alignment.bottomCenter,
+            children: [
               FadeInImage(
                 placeholder: MemoryImage(kTransparentImage),
                 image: FileImage(myNote.image),
@@ -32,30 +33,31 @@ class NoteItem extends StatelessWidget {
                 height: 100,
                 width: double.infinity,
               ),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                vertical: 1,
-                horizontal: 3,
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 1,
+                  horizontal: 3,
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      myNote.title,
+                      style: const TextStyle(color: Colors.amber),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      myNote.description,
+                      style: const TextStyle(color: Colors.grey),
+                      maxLines: 3,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                children: [
-                  Text(
-                    myNote.title,
-                    style: const TextStyle(color: Colors.grey),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    myNote.description,
-                    style: const TextStyle(color: Colors.grey),
-                    maxLines: 3,
-                    overflow: TextOverflow.clip,
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         )
 
         //ListTile option

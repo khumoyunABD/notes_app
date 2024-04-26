@@ -9,6 +9,7 @@ class Note {
     required this.title,
     required this.image,
     required this.description,
+    //this.noteColor = 'red',
     String? id,
   }) : id = id ?? uuid.v4();
 
@@ -16,4 +17,5 @@ class Note {
   final String title;
   final File image;
   final String description;
+  //String noteColor;
 }

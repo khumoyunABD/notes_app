@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:google_fonts/google_fonts.dart';
-import 'package:notes/logic/add_controller.dart';
+import 'package:notes/logic/note_controller.dart';
 import 'package:notes/screens/notes_screen.dart';
 
 final colorScheme = ColorScheme.fromSeed(
@@ -27,7 +28,7 @@ final theme = ThemeData().copyWith(
 );
 
 void main() {
-  //Get.put(AddNoteController());
+  Get.put(NoteController());
   runApp(const MyApp());
 }
 

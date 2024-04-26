@@ -13,19 +13,21 @@ Future<Database> _getDatabase() async {
     path.join(dbPath, 'notes.db'),
     onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE user_notes(id TEXT PRIMARY KEY, title TEXT, image TEXT, description TEXT)');
+          'CREATE TABLE client_notes(id TEXT PRIMARY KEY, title TEXT, image TEXT, description TEXT)');
     },
     version: 1,
   );
   return db;
 }
 
-class AddNoteController extends GetxController {
+class NoteController extends GetxController {
   List<Note> notes = <Note>[];
+  String imageUrl =
+      'https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png?20091205084734';
 
   Future<void> loadNotes() async {
     final db = await _getDatabase();
-    final data = await db.query('user_notes');
+    final data = await db.query('client_notes');
     final notes1 = data
         .map(
           (row) => Note(
@@ -44,9 +46,9 @@ class AddNoteController extends GetxController {
 
   void addNote(String title, File image, String description) async {
     final appDir = await syspaths.getApplicationDocumentsDirectory();
+
     final fileName = path.basename(image.path);
     final copiedImage = await image.copy('${appDir.path}/$fileName');
-
     final newNote = Note(
       title: title,
       image: copiedImage,
@@ -55,12 +57,20 @@ class AddNoteController extends GetxController {
 
     final db = await _getDatabase();
 
-    db.insert('user_notes', {
+    db.insert('client_notes', {
       'id': newNote.id,
       'title': newNote.title,
       'image': newNote.image.path,
       'description': newNote.description,
     });
-    update();
+    loadNotes();
+  }
+
+  Future<void> deleteNote(String id) async {
+    final db = await _getDatabase();
+
+    await db.delete('client_notes', where: '$id = ?', whereArgs: [id]);
+
+    loadNotes();
   }
 }

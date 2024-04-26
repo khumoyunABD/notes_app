@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:notes/logic/add_controller.dart';
+import 'package:notes/logic/note_controller.dart';
 import 'package:notes/screens/add_note.dart';
 import 'package:notes/screens/notes_list.dart';
 
@@ -17,17 +17,17 @@ class _NotesScreenState extends State<NotesScreen> {
   @override
   void initState() {
     super.initState();
-    Get.put(AddNoteController());
-    Get.find<AddNoteController>().loadNotes();
+    //Get.put(AddNoteController());
+    Get.find<NoteController>().loadNotes();
   }
 
   @override
   Widget build(BuildContext context) {
     //Get.find<AddNoteController>().loadNotes();
-    final userNotes = Get.find<AddNoteController>();
+    final userNotes = Get.find<NoteController>();
     //Obx(() => userNotes.notes)
 
-    final userNotes1 = GetBuilder<AddNoteController>(
+    final userNotes1 = GetBuilder<NoteController>(
         builder: (controller) => NotesList(notes: userNotes.notes));
     //GetBuilder<AddNoteController>(
     //builder: (controller) => NotesList(notes: userNotes));
@@ -44,9 +44,9 @@ class _NotesScreenState extends State<NotesScreen> {
           bottom: 14,
         ),
         child: IconButton.outlined(
-          // style: OutlinedButton.styleFrom(
-          //   backgroundColor: Colors.deepPurple,
-          // ),
+          style: OutlinedButton.styleFrom(
+            backgroundColor: Colors.orangeAccent,
+          ),
           //alignment: Alignment.center,
           //padding: EdgeInsets.all(40),
           iconSize: 40,
